@@ -1,5 +1,6 @@
 FROM alpine:latest
 LABEL maintainer="Luke Tainton <luke@tainton.uk>"
+LABEL org.opencontainers.image.source="https://github.com/luketainton/documize-docker"
 ARG DOCUMIZE_VERSION=v3.6.0
 RUN apk add --no-cache curl
 WORKDIR /opt
