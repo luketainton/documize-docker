@@ -1,0 +1,17 @@
+name: Build
+on:
+  push:
+    branches: 'main'
+
+jobs:
+  build:
+    name: GitHub Container Registry
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Login to GitHub Container Registry
+      run: echo ${{ secrets.PAT }} | docker login ghcr.io -u luketainton --password-stdin
+    - name: Build image for GitHub Container Registry
+      run: docker build . --file Dockerfile --tag ghcr.io/luketainton/documize:latest
+    - name: Push image to GitHub Container Registry
+      run: docker push ghcr.io/luketainton/documize:latest
